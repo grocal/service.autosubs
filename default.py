@@ -65,6 +65,10 @@ def isExcluded(movieFullPath):
         Debug("isExcluded(): Video is playing via HTTP source, which is currently set as excluded location.")
         return False
 
+    if (movieFullPath.find("https://") > -1) and getSettingAsBool('ExcludeHTTP'):
+        Debug("isExcluded(): Video is playing via HTTP source, which is currently set as excluded location.")
+        return False
+
     ExcludePath = getSetting('ExcludePath')
     if ExcludePath and getSettingAsBool('ExcludePathOption'):
         if (movieFullPath.find(ExcludePath) > -1):
